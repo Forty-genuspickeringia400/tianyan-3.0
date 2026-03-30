@@ -1,0 +1,28 @@
+{
+  "managed_by": "agentx-3.0",
+  "install_mode": "skipped",
+  "attempted": false,
+  "installed": false,
+  "verified": false,
+  "accepted": false,
+  "status": "skipped",
+  "task_id": "task_20f0fc43f871",
+  "skill_name": "produce-documentation-for-build-a-seven-layer-runtime",
+  "skill_version": "0.1.0-task.43f871",
+  "installed_directory_name": "agentx-3-generated--produce-documentation-for-build-a-seven-layer-runtime",
+  "managed_relative_path": "skills/agentx-3-generated--produce-documentation-for-build-a-seven-layer-runtime",
+  "installed_path": "C:\\Users\\Administrator\\.openclaw\\workspace\\release-prep\\skills\\agentx-3-generated--produce-documentation-for-build-a-seven-layer-runtime",
+  "installed_at": null,
+  "reason": "auto install only runs for top-level skill-pack tasks",
+  "verification": {
+    "passed": false,
+    "score": 0,
+    "missing": [
+      "Auto installation was skipped"
+    ],
+    "warnings": [],
+    "checklist": [],
+    "verified_at": null,
+    "summary": "auto install only runs for top-level skill-pack tasks"
+  }
+}

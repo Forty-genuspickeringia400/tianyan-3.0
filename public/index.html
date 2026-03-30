@@ -1,0 +1,832 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>澶╄3.0缁堟瀬鐗堝€欓€夋帶鍒跺彴</title>
+    <style>
+      :root {
+        --bg: #07101d;
+        --bg-2: #0b1426;
+        --panel: rgba(16, 27, 49, 0.96);
+        --panel-2: #0f1a31;
+        --line: #233a61;
+        --text: #edf2ff;
+        --muted: #9db1d9;
+        --accent: #71b6ff;
+        --good: #55d39c;
+        --warn: #f3b569;
+        --bad: #ef8f8f;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: Inter, Arial, sans-serif;
+        background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      }
+      .wrap {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 22px 18px 48px;
+      }
+      .panel, .hero, .card, .task, .mini, .tab-panel, .gate, .entry, .list-item, .phase {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: 0 12px 35px rgba(0,0,0,.18);
+      }
+      .hero, .card, .task, .tab-panel { padding: 18px; }
+      .section { margin-top: 16px; }
+      .stack { display: grid; gap: 12px; }
+      .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .spread { justify-content: space-between; }
+      .top-grid, .report-grid, .main-grid, .detail-grid, .kpis, .entries, .layers, .modes, .gates, .phases, .soul-grid, .matrix-grid {
+        display: grid;
+        gap: 16px;
+      }
+      .top-grid { grid-template-columns: 1.1fr .9fr; }
+      .report-grid { grid-template-columns: 1fr 1fr; }
+      .main-grid { grid-template-columns: 360px minmax(0, 1fr); }
+      .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .kpis { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .entries { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .layers, .modes, .gates { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .soul-grid { grid-template-columns: 1.1fr .9fr; }
+      .matrix-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .phases { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      h1, h2, h3, h4, p, ul { margin: 0; }
+      .muted { color: var(--muted); }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid #35507d;
+        background: #162544;
+        font-size: 12px;
+      }
+      .good { border-color: #247f5c; color: #c9ffe5; }
+      .warn { border-color: #8a6130; color: #ffe1b4; }
+      .bad { border-color: #8b4040; color: #ffd0d0; }
+      .hero {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .hero h1 { font-size: 32px; }
+      .hero .muted { line-height: 1.6; }
+      .nav {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      a.anchor-btn, button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      button, a.anchor-btn.primary {
+        border: 0;
+        background: var(--accent);
+        color: #07101d;
+      }
+      button.secondary, a.anchor-btn.secondary {
+        border: 0;
+        background: #203252;
+        color: var(--text);
+      }
+      button.ghost, a.anchor-btn.ghost {
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text);
+      }
+      textarea, select, input {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid #35507d;
+        background: #0c1530;
+        color: white;
+        font: inherit;
+        padding: 10px 12px;
+      }
+      textarea { min-height: 138px; resize: vertical; }
+      .mini, .gate, .entry, .list-item, .phase { padding: 14px; }
+      .mini strong, .gate strong { display: block; }
+      .kpi { padding: 14px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px; }
+      .kpi strong { display: block; font-size: 24px; margin-bottom: 6px; }
+      .task-list { display: grid; gap: 12px; margin-top: 12px; }
+      .task-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+      .tabbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+      .mono, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+      pre {
+        margin: 0;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid #203252;
+        background: #0a1225;
+        white-space: pre-wrap;
+      }
+      ul.clean { padding-left: 18px; display: grid; gap: 6px; }
+      .footer-space { height: 32px; }
+      @media (max-width: 1360px) {
+        .top-grid, .report-grid, .main-grid, .detail-grid, .entries, .layers, .modes, .gates, .phases, .soul-grid, .matrix-grid { grid-template-columns: 1fr; }
+        .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 900px) {
+        .kpis { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero" id="section-home">
+        <div class="row" id="heroBadges"></div>
+        <div class="row spread">
+          <div class="stack" style="gap:10px">
+            <h1>澶╄3.0 / 缁堟瀬鐗堝€欓€夋帶鍒跺彴</h1>
+            <p class="muted" id="heroSummary">loading...</p>
+          </div>
+          <div class="nav">
+            <a class="anchor-btn ghost" href="#section-home">棣栭〉姹囨姤</a>
+            <a class="anchor-btn ghost" href="#section-architecture">涓冨眰 / 妯″紡</a>
+            <a class="anchor-btn ghost" href="#section-soul">鐏垫€?/ 涓夐瓊涓冮瓌</a>
+            <a class="anchor-btn ghost" href="#section-network-security">缃戠粶瀹夊叏</a>
+            <a class="anchor-btn ghost" href="#section-evolution-system">鑷垜杩涘寲</a>
+            <a class="anchor-btn ghost" href="#section-tasks">浠诲姟鎺у埗鍙?/a>
+            <a class="anchor-btn ghost" href="#section-workbench">浜や粯宸ヤ綔鍙?/a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section kpis" id="kpis"></div>
+
+      <div class="section report-grid">
+        <div class="card stack">
+          <div class="row spread">
+            <h2>褰撳墠椤圭洰鐘舵€?/h2>
+            <span id="candidatePill"></span>
+          </div>
+          <div class="mini"><strong>灏佹澘缁撹</strong><div class="muted" id="candidateSummary">loading...</div></div>
+          <div class="mini"><strong>楠岃瘉鐘舵€?/strong><div class="muted" id="validationSummary">loading...</div></div>
+          <div class="mini"><strong>鏈疆閲嶇偣</strong><ul class="clean" id="releaseFocus"></ul></div>
+          <div class="mini"><strong>鐪熷疄杈圭晫</strong><ul class="clean" id="boundaries"></ul></div>
+        </div>
+        <div class="card stack">
+          <h2>鎺ㄨ崘涓嬩竴姝?/h2>
+          <div id="nextSteps" class="stack"></div>
+          <h3>鏈€杩戞椿鍔?/h3>
+          <div id="recentTasks" class="stack"></div>
+        </div>
+      </div>
+
+      <div class="section card">
+        <div class="row spread">
+          <h2>璐ㄩ噺闂搁棬</h2>
+          <span class="pill">棣栭〉鍙洿鎺ュ綋姹囨姤椤?/span>
+        </div>
+        <div id="qualityGates" class="gates" style="margin-top:12px"></div>
+      </div>
+
+      <div class="section card" id="section-architecture">
+        <div class="row spread">
+          <h2>涓冨眰鏋舵瀯鐘舵€?/h2>
+          <span class="pill">L0-L6</span>
+        </div>
+        <div id="layers" class="layers" style="margin-top:12px"></div>
+      </div>
+
+      <div class="section card">
+        <div class="row spread">
+          <h2>鍥涚妯″紡鐘舵€?/h2>
+          <span class="pill">deliberate / reflex / background / federated</span>
+        </div>
+        <div id="modes" class="modes" style="margin-top:12px"></div>
+      </div>
+
+      <div class="section card">
+        <div class="row spread">
+          <h2>鍏抽敭鍏ュ彛</h2>
+          <span class="pill">浠庨椤电洿杈?/span>
+        </div>
+        <div id="entries" class="entries" style="margin-top:12px"></div>
+      </div>
+
+      <div class="section soul-grid" id="section-soul">
+        <div class="card stack">
+          <div class="row spread">
+            <h2>鐏垫€?/ 瑙夐啋鐘舵€?/h2>
+            <span id="awakeningPill"></span>
+          </div>
+          <div class="mini"><strong>浣垮懡涓€鑷存€?/strong><div class="muted" id="awakeningAlignment">loading...</div></div>
+          <div class="mini"><strong>Self-model</strong><div class="muted" id="awakeningSelfModel">loading...</div></div>
+          <div class="mini"><strong>杩涘寲鍐插姩绾︽潫</strong><ul class="clean" id="awakeningConstraints"></ul></div>
+        </div>
+        <div class="card stack">
+          <div class="row spread">
+            <h2>涓夐瓊鐘舵€?/h2>
+            <span class="pill">涓婚瓊 / 瑙夐瓊 / 绮鹃瓊</span>
+          </div>
+          <div id="threeSouls" class="stack"></div>
+        </div>
+      </div>
+
+      <div class="section card">
+        <div class="row spread">
+          <h2>涓冮瓌宸ョ▼闃插尽鐭╅樀</h2>
+          <span class="pill" id="defenseSummaryPill">7 spirits</span>
+        </div>
+        <div id="defenseEngineeringSummary" class="mini" style="margin-top:12px"><strong>宸ョ▼濮挎€?/strong><div class="muted" id="defenseEngineeringText">loading...</div></div>
+        <div id="defenseMatrix" class="matrix-grid" style="margin-top:12px"></div>
+      </div>
+
+      <div class="section soul-grid" id="section-network-security">
+        <div class="card stack">
+          <div class="row spread">
+            <h2>缃戠粶瀹夊叏閰嶇疆灞?/h2>
+            <span class="pill" id="securitySummaryPill">loading...</span>
+          </div>
+          <div class="mini"><strong>褰撳墠濮挎€?/strong><div class="muted" id="securityPosture">loading...</div></div>
+          <div class="mini"><strong>杈圭晫</strong><ul class="clean" id="securityBoundaries"></ul></div>
+          <div class="mini"><strong>寤鸿鍔ㄤ綔</strong><ul class="clean" id="securityRecommended"></ul></div>
+        </div>
+        <div class="card stack">
+          <div class="row spread">
+            <h2>閰嶇疆灞傛竻鍗?/h2>
+            <span class="pill">ingress / boundary / egress / secrets / audit</span>
+          </div>
+          <div id="securityLayers" class="stack"></div>
+        </div>
+      </div>
+
+      <div class="section card">
+        <div class="row spread">
+          <h2>瀹夊叏鎷撴墤瑙嗗浘</h2>
+          <span class="pill">local-first</span>
+        </div>
+        <div id="securityTopology" class="detail-grid" style="margin-top:12px"></div>
+      </div>
+
+      <div class="section soul-grid" id="section-evolution-system">
+        <div class="card stack">
+          <div class="row spread">
+            <h2>鑷垜杩涘寲闃舵</h2>
+            <span id="evolutionStagePill"></span>
+          </div>
+          <div class="mini"><strong>闃舵璇存槑</strong><div class="muted" id="evolutionStageReason">loading...</div></div>
+          <div class="mini"><strong>杈圭晫</strong><ul class="clean" id="evolutionBoundaries"></ul></div>
+          <div class="mini"><strong>瀹℃牳閾?/strong><div class="muted" id="evolutionPipeline">loading...</div></div>
+        </div>
+        <div class="card stack">
+          <div class="row spread">
+            <h2>鏈€鏂版紨鍖栧缓璁?/ Capsule</h2>
+            <span class="pill">candidate -> review -> apply/shelve/rollback</span>
+          </div>
+          <div class="mini"><strong>鏈€鏂?capsule</strong><div class="muted" id="latestCapsule">loading...</div></div>
+          <div class="mini"><strong>鏈€鏂板缓璁?/strong><div class="muted" id="latestSuggestion">loading...</div></div>
+          <div class="mini"><strong>缁熻</strong><div class="muted" id="evolutionSummary">loading...</div></div>
+        </div>
+      </div>
+
+      <div class="section top-grid" id="section-tasks">
+        <div class="card stack">
+          <div class="row spread">
+            <h2>鍒涘缓浠诲姟</h2>
+            <div class="row">
+              <button id="runBtn">杩愯</button>
+              <button id="refreshBtn" class="secondary">鍒锋柊</button>
+              <button id="dreamBtn" class="secondary">璺戜竴娆℃ⅵ澧?/button>
+            </div>
+          </div>
+          <div class="row">
+            <select id="mode">
+              <option value="deliberate">娣辨€濇ā寮?/ deliberate</option>
+              <option value="reflex">鍙嶅皠妯″紡 / reflex</option>
+              <option value="background">鍚庡彴姊﹀妯″紡 / dream</option>
+              <option value="federated">缇や綋鍗忎綔妯″紡 / federated</option>
+            </select>
+            <select id="track">
+              <option value="runtime-studio">runtime-studio</option>
+              <option value="skill-pack">skill-pack</option>
+            </select>
+          </div>
+          <textarea id="taskInput">鏍规嵁 v6.0 瑙勬牸浜у嚭鍙繍琛岀殑涓冨眰澶氭櫤鑳戒綋绯荤粺锛岃姹傝兘灞曠ず鏋舵瀯銆佹ā寮忋€佺敓鍛藉懆鏈熴€佷簨浠躲€佽瘉鎹紝浠ュ強 bundle / skill-pack / install / verify 鑳藉姏銆?/textarea>
+          <div class="mini"><strong>鎻愮ず</strong><div class="muted">棣栭〉鐪嬬粨璁猴紱浠诲姟鍖鸿礋璐ｅ仛楠岃瘉锛涘彸渚у伐浣滃彴璐熻矗鐪?lifecycle / observability / package / skill-pack / install / verify銆?/div></div>
+        </div>
+        <div class="card stack">
+          <div class="row spread">
+            <h2>鍚庡彴 dream runs</h2>
+            <span class="pill" id="runCountPill">0</span>
+          </div>
+          <div id="recentRuns" class="stack"></div>
+        </div>
+      </div>
+
+      <div class="section main-grid" id="section-workbench">
+        <div class="card">
+          <div class="row spread">
+            <h2>浠诲姟鍒楄〃</h2>
+            <span class="pill" id="taskCount">0</span>
+          </div>
+          <div id="tasks" class="task-list"></div>
+        </div>
+
+        <div class="card">
+          <div class="row spread">
+            <h2>浠诲姟宸ヤ綔鍙?/h2>
+            <div class="tabbar">
+              <button class="ghost" onclick="showTab('summary')">姒傝</button>
+              <button class="ghost" onclick="showTab('lifecycle')">Lifecycle</button>
+              <button class="ghost" onclick="showTab('observability')">Observability</button>
+              <button class="ghost" onclick="showTab('package')">Package</button>
+              <button class="ghost" onclick="showTab('skill')">Skill / Install / Verify</button>
+              <button class="ghost" onclick="showTab('explorer')">Explorer</button>
+              <button class="ghost" onclick="showTab('files')">Files</button>
+            </div>
+          </div>
+          <div id="workbench">璇烽€夋嫨涓€涓换鍔°€?/div>
+        </div>
+      </div>
+
+      <div class="footer-space"></div>
+    </div>
+
+    <script>
+      let currentTaskId = null;
+      let currentTab = 'summary';
+      let currentWorkbench = null;
+
+      async function fetchJson(url, options) {
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
+        return data;
+      }
+
+      const esc = (value) => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+      const pill = (text, kind = '') => `<span class="pill ${kind}">${esc(text)}</span>`;
+
+      function statusPill(status) {
+        if (status === true) return pill('passed', 'good');
+        if (status === false) return pill('pending', 'warn');
+        if (['closed', 'ready', 'accepted', 'active', 'passed'].includes(status)) return pill(status, 'good');
+        if (['failed', 'blocked'].includes(status)) return pill(status, 'bad');
+        if (['warning', 'warn', 'escalated', 'standby', 'pending'].includes(status)) return pill(status, 'warn');
+        return pill(status || 'unknown');
+      }
+
+      function modePill(mode) {
+        const map = { deliberate: 'good', reflex: 'warn', background: '', federated: 'good' };
+        return pill(mode, map[mode] || '');
+      }
+
+      function renderHome(dashboard) {
+        document.getElementById('heroBadges').innerHTML = [
+          pill('澶╄3.0', 'good'),
+          pill(dashboard.verdict.stage_label, dashboard.verdict.candidate_ready ? 'good' : 'warn'),
+          pill(dashboard.verdict.scope),
+          pill(`validation: ${dashboard.validation.status}`, dashboard.validation.passed ? 'good' : 'warn'),
+        ].join('');
+        document.getElementById('heroSummary').textContent = dashboard.verdict.summary;
+        document.getElementById('candidatePill').innerHTML = statusPill(dashboard.verdict.candidate_ready ? 'ready' : 'pending');
+        document.getElementById('candidateSummary').textContent = dashboard.verdict.candidate_ready
+          ? '褰撳墠棣栭〉鍒ゆ柇锛氬凡杈惧埌鈥滅粓鏋佺増灏佹澘鍊欓€夆€濄€傞噸鐐规槸鏈湴 runtime 鍙銆佸彲楠岃瘉銆佸彲浜や粯锛岃€屼笉鏄吉瑁呮垚杩滅▼鍒嗗竷寮忋€?
+          : '褰撳墠杩樻湭杈惧埌鏈€缁堝€欓€夛紝鍏堢湅涓嬮潰鐨勮川閲忛椄闂ㄤ笌鎺ㄨ崘涓嬩竴姝ャ€?;
+        document.getElementById('validationSummary').textContent = `${dashboard.validation.status} 路 ${dashboard.validation.commands.join(' / ')}${dashboard.validation.last_verified_at ? ` 路 ${dashboard.validation.last_verified_at}` : ''}`;
+        document.getElementById('releaseFocus').innerHTML = dashboard.release_focus.map((item) => `<li>${esc(item)}</li>`).join('');
+        document.getElementById('boundaries').innerHTML = dashboard.boundaries.map((item) => `<li>${esc(item)}</li>`).join('');
+
+        const kpiEntries = [
+          ['鎬讳换鍔?, dashboard.kpis.total_tasks],
+          ['宸插叧闂?, dashboard.kpis.closed_tasks],
+          ['寰呭鎵?, dashboard.kpis.escalated_tasks],
+          ['Dream Runs', dashboard.kpis.background_runs],
+          ['宸查獙鏀跺畨瑁?, dashboard.kpis.accepted_skill_installs],
+          ['Registry Agents', dashboard.kpis.registry_agents],
+        ];
+        document.getElementById('kpis').innerHTML = kpiEntries.map(([label, value]) => `
+          <div class="kpi"><strong>${esc(value)}</strong><span class="muted">${esc(label)}</span></div>
+        `).join('');
+
+        document.getElementById('qualityGates').innerHTML = dashboard.quality_gates.map((gate) => `
+          <div class="gate">
+            <div class="row spread"><strong>${esc(gate.title)}</strong>${statusPill(gate.status)}</div>
+            <div class="muted" style="margin-top:8px">${esc(gate.detail)}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('layers').innerHTML = dashboard.layers.map((layer) => `
+          <div class="mini">
+            <div class="row spread"><strong>${esc(layer.id)} ${esc(layer.title)}</strong>${statusPill(layer.status)}</div>
+            <div class="muted" style="margin-top:8px">${esc(layer.summary)}</div>
+            <div class="muted" style="margin-top:8px">${esc((layer.signals || []).join(' / '))}</div>
+            <div class="muted" style="margin-top:8px">${esc(layer.reason || '')}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('modes').innerHTML = dashboard.modes.map((mode) => `
+          <div class="mini">
+            <div class="row spread"><strong>${esc(mode.label)}</strong>${modePill(mode.id)}</div>
+            <div class="muted" style="margin-top:8px">${esc(mode.use_when)}</div>
+            <div class="muted" style="margin-top:8px">used=${esc(mode.used_count)} 路 latest=${esc(mode.latest_status || '-')}</div>
+            <div class="muted" style="margin-top:8px">${esc(mode.recommended_entry || '')}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('entries').innerHTML = dashboard.key_entries.map((entry) => `
+          <div class="entry">
+            <strong>${esc(entry.title)}</strong>
+            <div class="muted" style="margin-top:8px">${esc(entry.description)}</div>
+            <div style="margin-top:10px"><a class="anchor-btn secondary" href="${esc(entry.target)}">鎵撳紑</a></div>
+          </div>
+        `).join('');
+
+        const awakening = dashboard.soul?.awakening || {};
+        document.getElementById('awakeningPill').innerHTML = statusPill(awakening.growth_stage?.label || awakening.mission_alignment?.status || 'pending');
+        document.getElementById('awakeningAlignment').textContent = `${awakening.mission_alignment?.status || 'unknown'} 路 score=${awakening.mission_alignment?.score ?? '-'} 路 ${awakening.mission_alignment?.summary || ''}`;
+        document.getElementById('awakeningSelfModel').textContent = awakening.self_model?.summary || 'no self-model';
+        document.getElementById('awakeningConstraints').innerHTML = (awakening.evolution_impulse_constraints || []).map((item) => `<li>${esc(item.source)} 路 ${item.allowed ? 'allow' : 'block'} 路 ${esc(item.reason)}</li>`).join('');
+        document.getElementById('threeSouls').innerHTML = (dashboard.soul?.three_souls || []).map((item) => `
+          <div class="list-item">
+            <div class="row spread"><strong>${esc(item.chinese_name)} / ${esc(item.engineering_name)}</strong>${statusPill(item.status)}</div>
+            <div class="muted" style="margin-top:8px">${esc(item.summary)}</div>
+            <div class="muted" style="margin-top:8px">${esc((item.mapped_to || []).join(' / '))}</div>
+          </div>`).join('');
+
+        document.getElementById('defenseSummaryPill').textContent = `ready ${dashboard.defense?.summary?.active_or_ready ?? 0}/7`;
+        document.getElementById('defenseEngineeringText').textContent = `${dashboard.defense?.engineering_view?.matrix_type || 'engineering-defense-matrix'} 路 ${dashboard.defense?.engineering_view?.posture || 'local-first'}`;
+        document.getElementById('defenseMatrix').innerHTML = (dashboard.defense?.matrix || []).map((item) => `
+          <div class="mini">
+            <div class="row spread"><strong>${esc(item.chinese_name)} / ${esc(item.engineering_name)}</strong>${statusPill(item.status)}</div>
+            <div class="muted" style="margin-top:8px">${esc(item.summary)}</div>
+            <div class="muted" style="margin-top:8px">${esc((item.linked_services || []).join(' / '))}</div>
+            <div class="muted" style="margin-top:8px">${esc((item.signals || []).join(' / '))}</div>
+          </div>`).join('');
+
+        const security = dashboard.network_security || {};
+        document.getElementById('securitySummaryPill').textContent = `${security.summary?.ingress_exposure || 'loopback-only'} 路 ${security.summary?.total_layers || 0} layers`;
+        document.getElementById('securityPosture').textContent = `${security.summary?.posture || 'local-first'} 路 bind=${security.summary?.bind_host || '-'} 路 egress=${security.summary?.egress_mode || '-'}`;
+        document.getElementById('securityBoundaries').innerHTML = (security.boundaries || []).map((item) => `<li>${esc(item)}</li>`).join('');
+        document.getElementById('securityRecommended').innerHTML = (security.recommended_moves || []).map((item) => `<li>${esc(item)}</li>`).join('');
+        document.getElementById('securityLayers').innerHTML = (security.configuration_layers || []).map((item) => `
+          <div class="list-item">
+            <div class="row spread"><strong>${esc(item.title)}</strong>${statusPill(item.status)}</div>
+            <div class="muted" style="margin-top:8px">${esc(item.summary)}</div>
+            <div class="muted" style="margin-top:8px">${esc((item.signals || []).join(' / '))}</div>
+          </div>`).join('');
+        document.getElementById('securityTopology').innerHTML = [
+          ['鎺у埗闈?, security.topology?.control_plane],
+          ['鏁版嵁闈?, security.topology?.data_plane],
+          ['鍑哄彛闈?, security.topology?.egress_plane],
+        ].map(([label, value]) => `
+          <div class="tab-panel stack">
+            <h3>${esc(label)}</h3>
+            <pre>${esc(JSON.stringify(value || {}, null, 2))}</pre>
+          </div>`).join('');
+
+        const evo = dashboard.self_evolution || {};
+        document.getElementById('evolutionStagePill').innerHTML = statusPill(evo.stage?.label || evo.stage?.id || 'pending');
+        document.getElementById('evolutionStageReason').textContent = evo.stage?.reason || 'no evolution stage';
+        document.getElementById('evolutionBoundaries').innerHTML = (evo.boundaries || []).map((item) => `<li>${esc(item)}</li>`).join('');
+        document.getElementById('evolutionPipeline').textContent = `${(evo.pipeline?.stages || []).join(' -> ')} 路 ${evo.pipeline?.approvals || ''}`;
+        document.getElementById('latestCapsule').textContent = evo.latest_capsule ? `${evo.latest_capsule.title} 路 ${evo.latest_capsule.lifecycle_state} 路 ${evo.latest_capsule.review_status}` : 'none';
+        document.getElementById('latestSuggestion').textContent = evo.latest_suggestion ? `${evo.latest_suggestion.title} 路 ${evo.latest_suggestion.summary}` : 'none';
+        document.getElementById('evolutionSummary').textContent = `capsules=${evo.summary?.total_capsules ?? 0} 路 candidate=${evo.summary?.candidate_capsules ?? 0} 路 applied=${evo.summary?.applied_capsules ?? 0} 路 rolled_back=${evo.summary?.rolled_back_capsules ?? 0}`;
+
+        document.getElementById('nextSteps').innerHTML = dashboard.next_steps.map((item) => `
+          <div class="list-item">
+            <strong>${esc(item.title)}</strong>
+            <div class="muted" style="margin-top:8px">${esc(item.reason)}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('recentTasks').innerHTML = dashboard.recent_tasks.length
+          ? dashboard.recent_tasks.map((task) => `
+            <div class="list-item">
+              <div class="row">${statusPill(task.status)} ${modePill(task.mode)} ${pill(task.product_track)}</div>
+              <div style="margin-top:8px">${esc(task.goal || task.task_id)}</div>
+              <div class="muted" style="margin-top:8px">evidence=${esc(task.evidence_count)} 路 verify=${task.verify_passed ? 'passed' : 'pending'} 路 ${esc(task.updated_at)}</div>
+            </div>
+          `).join('')
+          : '<div class="muted">鏆傛棤浠诲姟</div>';
+
+        document.getElementById('runCountPill').textContent = dashboard.recent_runs.length;
+        document.getElementById('recentRuns').innerHTML = dashboard.recent_runs.length
+          ? dashboard.recent_runs.map((run) => `
+            <div class="list-item">
+              <div class="row spread"><strong>${esc(run.run_id)}</strong>${statusPill(run.status)}</div>
+              <div class="muted" style="margin-top:8px">${esc(run.type)} 路 learned=${esc(run.learned_count)} 路 ${esc(run.created_at)}</div>
+            </div>
+          `).join('')
+          : '<div class="muted">杩樻病鏈?dream cycle锛岀偣鈥滆窇涓€娆℃ⅵ澧冣€濆嵆鍙獙璇?L5銆?/div>';
+      }
+
+      function renderTasks(tasks) {
+        document.getElementById('taskCount').textContent = tasks.length;
+        document.getElementById('tasks').innerHTML = tasks.length ? tasks.map((task) => `
+          <div class="task">
+            <div class="row">
+              <strong>${esc(task.task_id)}</strong>
+              ${statusPill(task.status)}
+              ${modePill(task.mode)}
+              ${pill(task.product_track || 'runtime-studio')}
+            </div>
+            <p style="margin-top:10px">${esc(task.goal || '(no goal yet)')}</p>
+            <div class="task-meta muted">
+              <div>deliverables: ${esc((task.analysis?.deliverables || []).join(', ') || 'none')}</div>
+              <div>subtasks: ${esc((task.subtasks || []).length)}</div>
+              <div>evidence: ${esc((task.evidence || []).length)}</div>
+              <div>verify: ${task.verification?.passed ? 'passed' : 'pending'}</div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button class="ghost" onclick="selectTask('${task.task_id}')">鏌ョ湅</button>
+              <button class="secondary" onclick="approveTask('${task.task_id}')">Approve</button>
+              <button class="secondary" onclick="retryTask('${task.task_id}')">Retry</button>
+            </div>
+          </div>
+        `).join('') : '<div class="muted">鏆傛棤浠诲姟</div>';
+      }
+
+      function renderSummary(workbench) {
+        const task = workbench.task;
+        const pkg = workbench.package;
+        const skill = workbench.skill_pack;
+        const next = workbench.explorer?.recommended_next_step;
+        return `
+          <div class="detail-grid">
+            <div class="tab-panel stack">
+              <div class="row">${statusPill(task.status)} ${modePill(task.mode)} ${pill(task.product_track || 'runtime-studio')}</div>
+              <h3>${esc(task.goal)}</h3>
+              <div class="mini"><strong>Next action</strong><div class="muted">${esc(task.next_action || next?.reason || 'none')}</div></div>
+              <div class="mini"><strong>Plan</strong><div class="muted">${esc(task.plan?.summary || 'no plan')}</div></div>
+              <div class="mini"><strong>Result</strong><div class="muted">${esc(task.result?.summary || 'pending')}</div></div>
+              <div class="mini"><strong>鐏垫€?/ 瑙夐啋</strong><div class="muted">${esc(workbench.soul?.awakening?.summary || 'pending')}</div></div>
+              <div class="mini"><strong>缃戠粶瀹夊叏閰嶇疆</strong><div class="muted">${esc(workbench.network_security?.task_posture?.summary || 'local-first')}</div></div>
+              <div class="mini"><strong>鑷垜杩涘寲</strong><div class="muted">${esc(workbench.evolution_control?.stage?.label || '-')} 路 ${esc(workbench.evolution_control?.latest_capsule?.title || 'no capsule')}</div></div>
+              <div class="mini"><strong>鎺ㄨ崘鍏ュ彛</strong><div class="muted">${esc(next?.title || '鍏堢湅 README / bundle / skill-pack readiness')}</div></div>
+            </div>
+            <div class="tab-panel stack">
+              <h3>浜や粯涓婚摼</h3>
+              <div class="mini"><strong>Bundle zip</strong><div class="mono">${esc(task.result?.output?.bundle?.zip || '-')}</div></div>
+              <div class="mini"><strong>.skill archive</strong><div class="mono">${esc(skill.entrypoints?.archive || '-')}</div></div>
+              <div class="mini"><strong>Install path</strong><div class="mono">${esc(skill.installation?.installed_path || '-')}</div></div>
+              <div class="mini"><strong>Verify</strong><div>${statusPill(skill.installation?.verification?.passed ? 'passed' : 'pending')}</div></div>
+              <div class="mini"><strong>NetSec</strong><div class="muted">${esc(workbench.network_security?.task_posture?.recommended_plane || 'local-only')} 路 bind=${esc(workbench.network_security?.runtime_snapshot?.bind_host || '-')}</div></div>
+              <div class="row">
+                ${pkg.downloads.bundle_zip ? `<button class="secondary" onclick="openDownload('${pkg.downloads.bundle_zip}')">Download bundle.zip</button>` : ''}
+                ${skill.downloads?.archive ? `<button class="secondary" onclick="openDownload('${skill.downloads.archive}')">Download .skill</button>` : ''}
+                ${skill.entrypoints?.directory ? `<button class="secondary" onclick="installSkillPack('${task.task_id}')">Install / Verify</button>` : ''}
+              </div>
+            </div>
+          </div>`;
+      }
+
+      function renderLifecycle(workbench) {
+        const phases = workbench.lifecycle.phases?.phases || [];
+        const recentEvents = (workbench.events || []).slice(0, 10).map((evt) => `
+          <div class="list-item">
+            <strong>${esc(evt.type)}</strong>
+            <div class="muted" style="margin-top:8px">${esc(evt.source)} 路 ${esc(evt.created_at)}</div>
+          </div>`).join('') || '<div class="muted">no events</div>';
+        return `
+          <div class="stack">
+            <div class="phases">
+              ${phases.map((phase) => `
+                <div class="phase">
+                  <div class="row spread"><strong>${esc(phase.label)}</strong>${phase.current ? pill('current', 'good') : phase.reached ? pill('reached', 'good') : pill('pending', 'warn')}</div>
+                </div>`).join('')}
+            </div>
+            <div class="detail-grid">
+              <div class="tab-panel stack">
+                <h3>Timeline</h3>
+                <pre>${esc(JSON.stringify(workbench.lifecycle.timeline, null, 2))}</pre>
+              </div>
+              <div class="tab-panel stack">
+                <h3>Graph / Queue</h3>
+                <pre>${esc(JSON.stringify(workbench.lifecycle.graph, null, 2))}</pre>
+              </div>
+            </div>
+            <div class="tab-panel stack">
+              <h3>Recent events</h3>
+              <div class="stack">${recentEvents}</div>
+            </div>
+          </div>`;
+      }
+
+      function renderObservability(workbench) {
+        const obs = workbench.observability;
+        return `
+          <div class="detail-grid">
+            <div class="tab-panel stack">
+              <h3>鍗忚 / mode orchestration</h3>
+              <div class="mini"><strong>current state</strong><div>${statusPill(obs.lifecycle.current)}</div></div>
+              <div class="mini"><strong>mode</strong><div class="muted">${esc(obs.mode_orchestration.explanation || '')}</div></div>
+              <pre>${esc(JSON.stringify({ protocols: obs.protocols, mode_orchestration: obs.mode_orchestration }, null, 2))}</pre>
+            </div>
+            <div class="tab-panel stack">
+              <h3>璇佹嵁 / artifacts / subtasks</h3>
+              <pre>${esc(JSON.stringify({ evidence_summary: obs.evidence_summary, artifact_summary: obs.artifact_summary, subtask_summary: obs.subtask_summary }, null, 2))}</pre>
+            </div>
+          </div>
+          <div class="detail-grid" style="margin-top:12px">
+            <div class="tab-panel stack">
+              <h3>Delegation / Boundary</h3>
+              <pre>${esc(JSON.stringify({ delegation: obs.delegation, federated_boundary: obs.federated_boundary }, null, 2))}</pre>
+            </div>
+            <div class="tab-panel stack">
+              <h3>涓冨眰杩愯瑙嗗浘</h3>
+              <div class="stack">${(obs.layers || []).map((layer) => `<div class="list-item"><div class="row spread"><strong>${esc(layer.id)} ${esc(layer.title)}</strong>${statusPill(layer.status)}</div><div class="muted" style="margin-top:8px">${esc(layer.summary)}</div></div>`).join('')}</div>
+            </div>
+          </div>
+          <div class="detail-grid" style="margin-top:12px">
+            <div class="tab-panel stack">
+              <h3>鐏垫€?/ 涓夐瓊</h3>
+              <pre>${esc(JSON.stringify(workbench.soul, null, 2))}</pre>
+            </div>
+            <div class="tab-panel stack">
+              <h3>涓冮瓌闃插尽 / 缃戠粶瀹夊叏 / 鑷垜杩涘寲</h3>
+              <pre>${esc(JSON.stringify({ defense: workbench.defense, network_security: workbench.network_security, evolution_control: workbench.evolution_control }, null, 2))}</pre>
+            </div>
+          </div>`;
+      }
+
+      function renderPackage(workbench) {
+        const pkg = workbench.package;
+        return `
+          <div class="detail-grid">
+            <div class="tab-panel stack">
+              <h3>Package summary</h3>
+              <div class="mini"><strong>bundle_ready</strong><div>${statusPill(pkg.bundle_ready ? 'ready' : 'pending')}</div></div>
+              <div class="mini"><strong>version</strong><div class="mono">${esc(pkg.versioning?.release_version || '-')}</div></div>
+              <div class="mini"><strong>recommended next step</strong><div class="muted">${esc(pkg.recommended_next_step?.title || '-')} 路 ${esc(pkg.recommended_next_step?.reason || '')}</div></div>
+              <div class="row">
+                ${pkg.downloads.readme ? `<button class="secondary" onclick="openDownload('${pkg.downloads.readme}')">README</button>` : ''}
+                ${pkg.downloads.bundle_markdown ? `<button class="secondary" onclick="openDownload('${pkg.downloads.bundle_markdown}')">bundle.md</button>` : ''}
+                ${pkg.downloads.bundle_zip ? `<button class="secondary" onclick="openDownload('${pkg.downloads.bundle_zip}')">bundle.zip</button>` : ''}
+              </div>
+            </div>
+            <div class="tab-panel stack">
+              <h3>Recommendations</h3>
+              <div class="stack">${(pkg.recommendations || []).map((item) => `<div class="list-item"><strong>${esc(item.title)}</strong><div class="muted" style="margin-top:8px">${esc(item.reason)}</div></div>`).join('')}</div>
+            </div>
+          </div>`;
+      }
+
+      function renderSkill(workbench) {
+        const skill = workbench.skill_pack;
+        const checklist = skill.installation?.verification?.checklist || [];
+        return `
+          <div class="detail-grid">
+            <div class="tab-panel stack">
+              <h3>Skill-pack readiness</h3>
+              <div class="row">${statusPill(skill.ready ? 'ready' : 'pending')} ${statusPill(skill.installed ? 'installed' : 'pending')} ${statusPill(skill.verified ? 'passed' : 'pending')}</div>
+              <div class="mini"><strong>display name</strong><div class="muted">${esc(skill.display_name || skill.name || '-')}</div></div>
+              <div class="mini"><strong>install strategy</strong><div class="muted">${esc(skill.install_strategy?.mode || 'managed-auto-install-with-verification')}</div></div>
+              <div class="mini"><strong>archive</strong><div class="mono">${esc(skill.entrypoints?.archive || '-')}</div></div>
+              <div class="row">
+                ${skill.downloads?.archive ? `<button class="secondary" onclick="openDownload('${skill.downloads.archive}')">Download .skill</button>` : ''}
+                ${skill.entrypoints?.directory ? `<button class="secondary" onclick="installSkillPack('${workbench.task.task_id}')">Install / Verify</button>` : ''}
+              </div>
+            </div>
+            <div class="tab-panel stack">
+              <h3>Install / Verify</h3>
+              <div class="mini"><strong>summary</strong><div class="muted">${esc(skill.installation?.acceptance_summary || skill.installation?.verification?.summary || 'pending')}</div></div>
+              <div class="mini"><strong>path</strong><div class="mono">${esc(skill.installation?.installed_path || '-')}</div></div>
+              <div class="mini"><strong>score</strong><div class="muted">${esc(skill.installation?.verification?.score ?? '-')}</div></div>
+              <div class="stack">${checklist.length ? checklist.map((item) => `<div class="list-item"><div class="row spread"><strong>${esc(item.title)}</strong>${statusPill(item.passed ? 'passed' : item.status || 'pending')}</div><div class="muted" style="margin-top:8px">${esc(item.detail || '')}</div></div>`).join('') : '<div class="muted">杩樻病鏈夊畨瑁呴獙鏀舵竻鍗曘€?/div>'}</div>
+            </div>
+          </div>`;
+      }
+
+      function renderExplorer(workbench) {
+        const groups = workbench.explorer?.artifact_index?.groups || [];
+        return groups.length ? `<div class="stack">${groups.map((group) => `
+          <div class="tab-panel stack">
+            <h3>${esc(group.title)}</h3>
+            <div class="stack">${group.items.map((item) => `
+              <div class="list-item">
+                <strong>${esc(item.relative_path)}</strong>
+                <div class="muted" style="margin-top:8px">${esc(item.type)} 路 ${esc(item.size_bytes)} bytes</div>
+                <div class="row" style="margin-top:8px">
+                  ${item.preview_url ? `<button class="ghost" onclick="previewFile('${item.preview_url}')">Preview</button>` : ''}
+                  ${item.download_url ? `<button class="secondary" onclick="openDownload('${item.download_url}')">Download</button>` : ''}
+                </div>
+              </div>`).join('')}</div>
+          </div>`).join('')}</div>` : '<div class="muted">no explorer data</div>';
+      }
+
+      function renderFiles(workbench) {
+        const files = workbench.files || [];
+        return files.length ? `<div class="stack">${files.map((file) => `
+          <div class="list-item">
+            <strong>${esc(file.relative_path)}</strong>
+            <div class="muted" style="margin-top:8px">${esc(file.size)} bytes 路 ${esc(file.updated_at)}</div>
+            <div class="row" style="margin-top:8px">
+              <button class="ghost" onclick="previewFile('/api/tasks/${workbench.task.task_id}/file?path=${encodeURIComponent(file.relative_path)}')">Preview</button>
+              <button class="secondary" onclick="openDownload('/api/tasks/${workbench.task.task_id}/download-file?path=${encodeURIComponent(file.relative_path)}')">Download</button>
+            </div>
+          </div>`).join('')}</div>` : '<div class="muted">no files</div>';
+      }
+
+      function renderWorkbench(workbench) {
+        if (!workbench) {
+          document.getElementById('workbench').innerHTML = '璇烽€夋嫨涓€涓换鍔°€?;
+          return;
+        }
+        if (currentTab === 'summary') document.getElementById('workbench').innerHTML = renderSummary(workbench);
+        if (currentTab === 'lifecycle') document.getElementById('workbench').innerHTML = renderLifecycle(workbench);
+        if (currentTab === 'observability') document.getElementById('workbench').innerHTML = renderObservability(workbench);
+        if (currentTab === 'package') document.getElementById('workbench').innerHTML = renderPackage(workbench);
+        if (currentTab === 'skill') document.getElementById('workbench').innerHTML = renderSkill(workbench);
+        if (currentTab === 'explorer') document.getElementById('workbench').innerHTML = renderExplorer(workbench);
+        if (currentTab === 'files') document.getElementById('workbench').innerHTML = renderFiles(workbench);
+      }
+
+      async function selectTask(taskId) {
+        currentTaskId = taskId;
+        const data = await fetchJson(`/api/tasks/${taskId}/workbench`);
+        currentWorkbench = data.workbench;
+        renderWorkbench(currentWorkbench);
+      }
+
+      function showTab(tab) {
+        currentTab = tab;
+        renderWorkbench(currentWorkbench);
+      }
+
+      function openDownload(url) { window.open(url, '_blank'); }
+
+      async function previewFile(url) {
+        const data = await fetchJson(url);
+        alert(data.file?.content || 'empty');
+      }
+
+      async function refreshAll() {
+        const [dashboardData, tasksData] = await Promise.all([
+          fetchJson('/api/dashboard'),
+          fetchJson('/api/tasks'),
+        ]);
+        renderHome(dashboardData.dashboard);
+        renderTasks(tasksData.tasks || []);
+        if (!currentTaskId && tasksData.tasks?.[0]?.task_id) currentTaskId = tasksData.tasks[0].task_id;
+        if (currentTaskId) await selectTask(currentTaskId);
+      }
+
+      async function runTask() {
+        const input = document.getElementById('taskInput').value;
+        const mode = document.getElementById('mode').value;
+        const product_track = document.getElementById('track').value;
+        const data = await fetchJson('/api/tasks', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ input, context: { mode, product_track, source: 'web-ui', channel: 'web-ui' } }),
+        });
+        currentTaskId = data.task.task_id;
+        currentTab = 'summary';
+        await refreshAll();
+      }
+
+      async function approveTask(taskId) {
+        await fetchJson(`/api/tasks/${taskId}/approve`, { method: 'POST' });
+        currentTaskId = taskId;
+        await refreshAll();
+      }
+
+      async function retryTask(taskId) {
+        await fetchJson(`/api/tasks/${taskId}/retry`, { method: 'POST' });
+        currentTaskId = taskId;
+        await refreshAll();
+      }
+
+      async function installSkillPack(taskId) {
+        await fetchJson(`/api/tasks/${taskId}/install-skill-pack`, { method: 'POST' });
+        currentTaskId = taskId;
+        currentTab = 'skill';
+        await refreshAll();
+      }
+
+      async function runDream() {
+        await fetchJson('/api/background/run', { method: 'POST' });
+        await refreshAll();
+      }
+
+      document.getElementById('runBtn').addEventListener('click', runTask);
+      document.getElementById('refreshBtn').addEventListener('click', refreshAll);
+      document.getElementById('dreamBtn').addEventListener('click', runDream);
+
+      refreshAll().catch((error) => {
+        document.body.innerHTML = `<pre style="padding:24px;color:white">${esc(error.stack || error.message)}</pre>`;
+      });
+    </script>
+  </body>
+</html>
+
+

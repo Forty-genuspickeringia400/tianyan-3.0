@@ -1,0 +1,16 @@
+﻿{
+    "name":  "agentx-3.0",
+    "version":  "0.1.0",
+    "private":  true,
+    "type":  "module",
+    "description":  "人体智能体协作模式-多智能体架构系统",
+    "scripts":  {
+                    "start":  "node src/server.js",
+                    "dev":  "node --watch src/server.js",
+                    "test":  "node --test",
+                    "smoke":  "node tests/smoke.mjs",
+                    "license:fingerprint":  "node scripts/show-fingerprint.mjs",
+                    "license:activate":  "node scripts/activate-license.mjs",
+                    "license:status":  "node scripts/show-license-status.mjs"
+                }
+}

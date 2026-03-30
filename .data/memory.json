@@ -1,0 +1,101 @@
+[
+  {
+    "memory_id": "mem_22cdb083f4f4",
+    "scope": "task",
+    "title": "Learning from task_efb25e737864",
+    "content": "{\"success\":true,\"lessons\":[\"Split product / runtime / skill layers early to reduce coupling.\",\"Always ship a bundle package, not only raw generated files.\"],\"reusable_patterns\":[\"delivery-lane\"],\"next_improvements\":[\"Expand external tool adapters.\",\"Add multi-agent delegation manager.\"]}",
+    "tags": [
+      "learning",
+      "federated",
+      "low"
+    ]
+  },
+  {
+    "memory_id": "mem_230cb3cad211",
+    "scope": "task",
+    "title": "Learning from task_20f0fc43f871",
+    "content": "{\"success\":true,\"lessons\":[\"Split product / runtime / skill layers early to reduce coupling.\",\"Always ship a bundle package, not only raw generated files.\"],\"reusable_patterns\":[\"delivery-lane\"],\"next_improvements\":[\"Expand external tool adapters.\",\"Add multi-agent delegation manager.\"]}",
+    "tags": [
+      "learning",
+      "deliberate",
+      "low"
+    ]
+  },
+  {
+    "memory_id": "mem_bfc4ebe9c7e5",
+    "scope": "task",
+    "title": "Learning from task_7111763bd3fe",
+    "content": "{\"success\":true,\"lessons\":[\"Split product / runtime / skill layers early to reduce coupling.\",\"Always ship a bundle package, not only raw generated files.\"],\"reusable_patterns\":[\"delivery-lane\"],\"next_improvements\":[\"Expand external tool adapters.\",\"Add multi-agent delegation manager.\"]}",
+    "tags": [
+      "learning",
+      "deliberate",
+      "low"
+    ]
+  },
+  {
+    "memory_id": "mem_9e5b579b6fde",
+    "scope": "task",
+    "title": "Learning from task_d78a65e9bae2",
+    "content": "{\"success\":true,\"lessons\":[\"Split product / runtime / skill layers early to reduce coupling.\",\"Always ship a bundle package, not only raw generated files.\"],\"reusable_patterns\":[\"delivery-lane\"],\"next_improvements\":[\"Expand external tool adapters.\",\"Add multi-agent delegation manager.\"]}",
+    "tags": [
+      "learning",
+      "deliberate",
+      "low"
+    ]
+  },
+  {
+    "memory_id": "mem_b134f729a3eb",
+    "scope": "task",
+    "title": "Learning from task_ca468b994b20",
+    "content": "{\"success\":true,\"lessons\":[\"Split product / runtime / skill layers early to reduce coupling.\",\"Always ship a bundle package, not only raw generated files.\"],\"reusable_patterns\":[\"delivery-lane\"],\"next_improvements\":[\"Expand external tool adapters.\",\"Add multi-agent delegation manager.\"]}",
+    "tags": [
+      "learning",
+      "deliberate",
+      "low"
+    ]
+  },
+  {
+    "memory_id": "mem_6d1034145063",
+    "scope": "task",
+    "title": "Learning from task_a65eab991340",
+    "content": "{\"success\":true,\"lessons\":[\"Split product / runtime / skill layers early to reduce coupling.\",\"Always ship a bundle package, not only raw generated files.\"],\"reusable_patterns\":[\"delivery-lane\"],\"next_improvements\":[\"Expand external tool adapters.\",\"Add multi-agent delegation manager.\"]}",
+    "tags": [
+      "learning",
+      "deliberate",
+      "low"
+    ]
+  },
+  {
+    "memory_id": "mem_d77b0ed068c4",
+    "scope": "task",
+    "title": "Learning from task_45d2c399ffce",
+    "content": "{\"success\":true,\"lessons\":[\"Split product / runtime / skill layers early to reduce coupling.\",\"Always ship a bundle package, not only raw generated files.\"],\"reusable_patterns\":[\"delivery-lane\"],\"next_improvements\":[\"Expand external tool adapters.\",\"Add multi-agent delegation manager.\"]}",
+    "tags": [
+      "learning",
+      "deliberate",
+      "low"
+    ]
+  },
+  {
+    "memory_id": "mem_seed_1",
+    "scope": "system",
+    "title": "天衍1.0 mission",
+    "content": "Prefer explicit task cards, explicit state transitions, auditable events, and human approval for risky actions.",
+    "tags": [
+      "mission",
+      "policy",
+      "audit"
+    ]
+  },
+  {
+    "memory_id": "mem_seed_2",
+    "scope": "system",
+    "title": "Execution rule",
+    "content": "Do not mark a task complete before verification. High-risk actions require approval.",
+    "tags": [
+      "execution",
+      "verification",
+      "approval"
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+# Implementation Plan
+
+## modules
+- skill-blueprint
+- runtime-playbook
+- implementation-plan
+- api-contract
+- test-strategy
+- documentation
+
+## next_build_steps
+- define contracts
+- implement services
+- wire orchestrator
+- verify outputs
+- package bundle
+- export skill-pack
+
+- **note**: Generated for: Produce a runtime operations playbook for: Build a seven-layer runtime with docs, tests, api, implementation and installable skill pack

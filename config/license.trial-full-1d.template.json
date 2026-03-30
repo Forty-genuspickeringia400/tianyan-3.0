@@ -1,0 +1,29 @@
+{
+  "licenseId": "lic_trial_full_1d_20260318_001",
+  "ownerName": "friend-trial-user",
+  "edition": "trial-full-1d",
+  "allowedDevices": 1,
+  "deviceFingerprints": [
+    "sha256:REPLACE_WITH_FRIEND_FINGERPRINT"
+  ],
+  "issuedAt": "2026-03-18T22:09:00+08:00",
+  "expiresAt": "2026-03-19T22:09:00+08:00",
+  "gracePeriodHours": 0,
+  "capabilities": {
+    "chat": true,
+    "basicWorkflows": true,
+    "skillInstall": true,
+    "taskControl": true,
+    "backgroundRun": true,
+    "evolutionAdmin": true,
+    "remoteExec": true,
+    "federation": true,
+    "selfUpdate": true,
+    "configAdmin": true,
+    "systemPromptView": false,
+    "skillExport": true,
+    "auditView": true
+  },
+  "policyVersion": "1.0.0",
+  "signature": ""
+}

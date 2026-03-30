@@ -1,0 +1,35 @@
+{
+  "mode": "local-stub",
+  "source": "smoke-test",
+  "checked_at": "2026-03-30T01:55:59.831Z",
+  "next_check_after": "2026-03-30T02:25:59.831Z",
+  "payload": {
+    "project": "agentx-3.0",
+    "version": "0.1.0",
+    "fingerprint": "sha256:33e60e70f53ee479ad0c0f6fd00a9da22c4f8f12bf797897fb797b3e849dce9b",
+    "license_id": null,
+    "edition": "internal",
+    "valid": true,
+    "reason": "License enforcement is disabled for the current runtime.",
+    "checked_at": "2026-03-30T01:55:59.831Z",
+    "capabilities": {
+      "chat": true,
+      "basicWorkflows": true,
+      "skillInstall": true,
+      "taskControl": true,
+      "backgroundRun": true,
+      "evolutionAdmin": true,
+      "remoteExec": true,
+      "federation": true,
+      "selfUpdate": true,
+      "configAdmin": true,
+      "systemPromptView": true,
+      "skillExport": true,
+      "auditView": true
+    }
+  },
+  "remote": null,
+  "metadata": {
+    "suite": "smoke"
+  }
+}

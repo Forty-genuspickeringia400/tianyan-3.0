@@ -1,0 +1,392 @@
+[
+  {
+    "capsule_id": "capsule_3bc4cb3ddaa5",
+    "capsule_key": "task:task_efb25e737864",
+    "version": "v1",
+    "title": "federated · Build a seven-layer runtime with docs, tests, api, implementation and in",
+    "kind": "capability",
+    "lifecycle_state": "applied",
+    "review_status": "approved",
+    "risk_level": "medium",
+    "source_task_id": "task_efb25e737864",
+    "source_run_id": null,
+    "source_mode": "federated",
+    "proposal": {
+      "summary": "Split product / runtime / skill layers early to reduce coupling.",
+      "expected_benefit": "复用已验证链路，降低重复构建成本。",
+      "guardrails": [
+        "只输出 candidate capsule，不自动放开安全边界。",
+        "高风险 apply / rollback 必须 approved=true。",
+        "所有状态变化写入 evolution records。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L5",
+        "L6",
+        "L3",
+        "L1"
+      ],
+      "target_services": [
+        "PlannerAgent",
+        "MemoryService"
+      ],
+      "chinese_concept": "自我进化 capsule"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": false,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change",
+        "unsupervised-network-expansion"
+      ]
+    },
+    "created_at": "2026-03-30T01:56:14.532Z",
+    "updated_at": "2026-03-30T01:56:14.779Z",
+    "last_decision": {
+      "decision": "apply",
+      "approved": true,
+      "reviewer": "test-suite",
+      "reason": "approved low-risk apply",
+      "at": "2026-03-30T01:56:14.779Z"
+    }
+  },
+  {
+    "capsule_id": "capsule_61e271a98543",
+    "capsule_key": "task:task_20f0fc43f871",
+    "version": "v1",
+    "title": "deliberate · Produce documentation for: Build a seven-layer runtime with docs, tests,",
+    "kind": "capability",
+    "lifecycle_state": "candidate",
+    "review_status": "awaiting-review",
+    "risk_level": "low",
+    "source_task_id": "task_20f0fc43f871",
+    "source_run_id": null,
+    "source_mode": "deliberate",
+    "proposal": {
+      "summary": "Split product / runtime / skill layers early to reduce coupling.",
+      "expected_benefit": "复用已验证链路，降低重复构建成本。",
+      "guardrails": [
+        "只输出 candidate capsule，不自动放开安全边界。",
+        "高风险 apply / rollback 必须 approved=true。",
+        "所有状态变化写入 evolution records。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L5",
+        "L3",
+        "L1"
+      ],
+      "target_services": [
+        "PlannerAgent",
+        "MemoryService"
+      ],
+      "chinese_concept": "自我进化 capsule"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": false,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change",
+        "unsupervised-network-expansion"
+      ]
+    },
+    "created_at": "2026-03-30T01:56:14.370Z",
+    "updated_at": "2026-03-30T01:56:14.370Z"
+  },
+  {
+    "capsule_id": "capsule_c4b9712538ba",
+    "capsule_key": "task:task_7111763bd3fe",
+    "version": "v1",
+    "title": "deliberate · Produce an implementation plan for: Build a seven-layer runtime with doc",
+    "kind": "capability",
+    "lifecycle_state": "candidate",
+    "review_status": "awaiting-review",
+    "risk_level": "low",
+    "source_task_id": "task_7111763bd3fe",
+    "source_run_id": null,
+    "source_mode": "deliberate",
+    "proposal": {
+      "summary": "Split product / runtime / skill layers early to reduce coupling.",
+      "expected_benefit": "复用已验证链路，降低重复构建成本。",
+      "guardrails": [
+        "只输出 candidate capsule，不自动放开安全边界。",
+        "高风险 apply / rollback 必须 approved=true。",
+        "所有状态变化写入 evolution records。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L5",
+        "L3",
+        "L1"
+      ],
+      "target_services": [
+        "PlannerAgent",
+        "MemoryService"
+      ],
+      "chinese_concept": "自我进化 capsule"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": false,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change",
+        "unsupervised-network-expansion"
+      ]
+    },
+    "created_at": "2026-03-30T01:56:13.745Z",
+    "updated_at": "2026-03-30T01:56:13.745Z"
+  },
+  {
+    "capsule_id": "capsule_9f0a1f6880c0",
+    "capsule_key": "task:task_d78a65e9bae2",
+    "version": "v1",
+    "title": "deliberate · Produce an API contract for: Build a seven-layer runtime with docs, test",
+    "kind": "capability",
+    "lifecycle_state": "candidate",
+    "review_status": "awaiting-review",
+    "risk_level": "low",
+    "source_task_id": "task_d78a65e9bae2",
+    "source_run_id": null,
+    "source_mode": "deliberate",
+    "proposal": {
+      "summary": "Split product / runtime / skill layers early to reduce coupling.",
+      "expected_benefit": "复用已验证链路，降低重复构建成本。",
+      "guardrails": [
+        "只输出 candidate capsule，不自动放开安全边界。",
+        "高风险 apply / rollback 必须 approved=true。",
+        "所有状态变化写入 evolution records。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L5",
+        "L3",
+        "L1"
+      ],
+      "target_services": [
+        "PlannerAgent",
+        "MemoryService"
+      ],
+      "chinese_concept": "自我进化 capsule"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": false,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change",
+        "unsupervised-network-expansion"
+      ]
+    },
+    "created_at": "2026-03-30T01:56:13.182Z",
+    "updated_at": "2026-03-30T01:56:13.182Z"
+  },
+  {
+    "capsule_id": "capsule_b1ade8d8cbb8",
+    "capsule_key": "task:task_ca468b994b20",
+    "version": "v1",
+    "title": "deliberate · Produce a test strategy for: Build a seven-layer runtime with docs, test",
+    "kind": "capability",
+    "lifecycle_state": "candidate",
+    "review_status": "awaiting-review",
+    "risk_level": "low",
+    "source_task_id": "task_ca468b994b20",
+    "source_run_id": null,
+    "source_mode": "deliberate",
+    "proposal": {
+      "summary": "Split product / runtime / skill layers early to reduce coupling.",
+      "expected_benefit": "复用已验证链路，降低重复构建成本。",
+      "guardrails": [
+        "只输出 candidate capsule，不自动放开安全边界。",
+        "高风险 apply / rollback 必须 approved=true。",
+        "所有状态变化写入 evolution records。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L5",
+        "L3",
+        "L1"
+      ],
+      "target_services": [
+        "PlannerAgent",
+        "MemoryService"
+      ],
+      "chinese_concept": "自我进化 capsule"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": false,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change",
+        "unsupervised-network-expansion"
+      ]
+    },
+    "created_at": "2026-03-30T01:56:12.678Z",
+    "updated_at": "2026-03-30T01:56:12.678Z"
+  },
+  {
+    "capsule_id": "capsule_125fc8f2b7ee",
+    "capsule_key": "task:task_a65eab991340",
+    "version": "v1",
+    "title": "deliberate · Produce a runtime operations playbook for: Build a seven-layer runtime w",
+    "kind": "capability",
+    "lifecycle_state": "candidate",
+    "review_status": "awaiting-review",
+    "risk_level": "low",
+    "source_task_id": "task_a65eab991340",
+    "source_run_id": null,
+    "source_mode": "deliberate",
+    "proposal": {
+      "summary": "Split product / runtime / skill layers early to reduce coupling.",
+      "expected_benefit": "复用已验证链路，降低重复构建成本。",
+      "guardrails": [
+        "只输出 candidate capsule，不自动放开安全边界。",
+        "高风险 apply / rollback 必须 approved=true。",
+        "所有状态变化写入 evolution records。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L5",
+        "L3",
+        "L1"
+      ],
+      "target_services": [
+        "PlannerAgent",
+        "MemoryService"
+      ],
+      "chinese_concept": "自我进化 capsule"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": false,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change",
+        "unsupervised-network-expansion"
+      ]
+    },
+    "created_at": "2026-03-30T01:56:12.216Z",
+    "updated_at": "2026-03-30T01:56:12.216Z"
+  },
+  {
+    "capsule_id": "capsule_59100c550c77",
+    "capsule_key": "task:task_45d2c399ffce",
+    "version": "v1",
+    "title": "deliberate · Produce an OpenClaw skill blueprint for: Build a seven-layer runtime wit",
+    "kind": "capability",
+    "lifecycle_state": "candidate",
+    "review_status": "awaiting-review",
+    "risk_level": "low",
+    "source_task_id": "task_45d2c399ffce",
+    "source_run_id": null,
+    "source_mode": "deliberate",
+    "proposal": {
+      "summary": "Split product / runtime / skill layers early to reduce coupling.",
+      "expected_benefit": "复用已验证链路，降低重复构建成本。",
+      "guardrails": [
+        "只输出 candidate capsule，不自动放开安全边界。",
+        "高风险 apply / rollback 必须 approved=true。",
+        "所有状态变化写入 evolution records。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L5",
+        "L3",
+        "L1"
+      ],
+      "target_services": [
+        "PlannerAgent",
+        "MemoryService"
+      ],
+      "chinese_concept": "自我进化 capsule"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": false,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change",
+        "unsupervised-network-expansion"
+      ]
+    },
+    "created_at": "2026-03-30T01:56:11.793Z",
+    "updated_at": "2026-03-30T01:56:11.793Z"
+  },
+  {
+    "capsule_id": "capsule_seed_controlled_evolution",
+    "capsule_key": "seed:controlled-evolution-boundary",
+    "version": "v1",
+    "title": "受控演化边界基线 capsule",
+    "kind": "strategy",
+    "lifecycle_state": "candidate",
+    "review_status": "awaiting-review",
+    "risk_level": "medium",
+    "source_task_id": null,
+    "source_run_id": null,
+    "source_mode": "background",
+    "proposal": {
+      "summary": "所有自我进化只允许以经验沉淀、候选策略、受控启用与回滚方式落地。",
+      "expected_benefit": "把灵性/觉醒与自我进化固定在可审计、可观察、可回滚的工程边界内。",
+      "guardrails": [
+        "不自动修改系统提示、工具策略、权限边界。",
+        "高风险 apply / rollback 必须显式 approved=true。",
+        "apply 之后仍需 verification / audit trail。"
+      ]
+    },
+    "mappings": {
+      "target_layers": [
+        "L0",
+        "L5"
+      ],
+      "target_services": [
+        "meta-core",
+        "evolution-service"
+      ],
+      "chinese_concept": "自我进化边界"
+    },
+    "controls": {
+      "auto_apply": false,
+      "requires_approval": true,
+      "verification_required": true,
+      "rollback_supported": true,
+      "blocked_actions": [
+        "system-prompt-mutation",
+        "tool-policy-change",
+        "permission-boundary-change"
+      ]
+    },
+    "created_at": "2026-03-15T18:10:00.000+08:00",
+    "updated_at": "2026-03-15T18:10:00.000+08:00"
+  }
+]

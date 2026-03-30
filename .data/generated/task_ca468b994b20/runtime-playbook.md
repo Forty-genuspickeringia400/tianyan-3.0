@@ -1,0 +1,16 @@
+# Runtime Playbook
+
+- **goal**: Produce a test strategy for: Build a seven-layer runtime with docs, tests, api, implementation and installable skill pack
+## operators
+- planner
+- executor
+- verifier
+- bundle exporter
+
+## controls
+- approval
+- retry
+- run-subtasks
+- background consolidation
+
+- **runtime_mode**: skill-pack

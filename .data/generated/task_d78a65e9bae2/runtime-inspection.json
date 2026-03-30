@@ -1,0 +1,11 @@
+{
+  "type": "runtime-inspection",
+  "title": "Runtime Inspection",
+  "content": {
+    "checks": [
+      "node-version",
+      "npm-version"
+    ],
+    "track": "skill-pack"
+  }
+}

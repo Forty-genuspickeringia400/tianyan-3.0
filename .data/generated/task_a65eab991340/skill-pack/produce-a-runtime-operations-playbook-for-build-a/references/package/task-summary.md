@@ -1,0 +1,22 @@
+# Task Summary
+
+- **goal**: Produce a runtime operations playbook for: Build a seven-layer runtime with docs, tests, api, implementation and installable skill pack
+- **product_track**: skill-pack
+- **complexity**: high
+## keywords
+- produce
+- a
+- runtime
+- operations
+- playbook
+- for
+- build
+- seven
+- layer
+- with
+- docs
+- tests
+- api
+- implementation
+- and
+- installable
